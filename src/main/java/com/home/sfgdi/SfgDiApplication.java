@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {"com.home.sfgdi", "org.springframework.pets"}) //if package outside main, need this to override default component scan
+//@ComponentScan(basePackages = {"com.home.sfgdi", "org.springframework.pets"}) //if package outside main, need this to override default component scan  //no need with Factory impl Lec76
 @SpringBootApplication
 public class SfgDiApplication {
 

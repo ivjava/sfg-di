@@ -3,14 +3,28 @@ package com.home.sfgdi.config;
 import com.home.sfgdi.repositories.EnglishGreetingRepository;
 import com.home.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.home.sfgdi.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.*;
+import org.springframework.pets.PetService;
+import org.springframework.pets.PetServiceFactory;
 
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+    @Profile({"dog", "default"})
+    @Bean
+    PetService dogPetSerivce(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetSerivce("dog");
+    }
+    @Profile({"cat"})
+    @Bean
+    PetService catPetSerivce(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetSerivce("cat");
+    }
 
     @Profile("ES")
     @Bean("i18nService") //by defualt java uses method name not the class
@@ -35,10 +49,10 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
-    ConstructorGreetingService constructorGreetingService() {
-        return new ConstructorGreetingService();
-    }
+//    @Bean  // Now defined via xml Lec77
+//    ConstructorGreetingService constructorGreetingService() {
+//        return new ConstructorGreetingService();
+//    }
 
     @Bean
     PropertyInjectedGreetingService propertyInjectedGreetingService() {
