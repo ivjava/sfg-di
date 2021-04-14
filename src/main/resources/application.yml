@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: cat, EN, dev
+#    active:
+#      - dog
+#      - EN
+#      - prod  #list same as commas
+guru:
+  username: YmlUserName
+  password: YmlPassword
+  jdbcurl: YmlUrl
+
+---  #'new file' in yaml - can use instead of separate files - guru likes file more
+spring:
+  profiles: prod
+guru:
+      username: YmlProdUserName
+      password: YmlProdPassword
+      jdbcurl: YmlProdUrl
